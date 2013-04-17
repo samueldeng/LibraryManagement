@@ -8,6 +8,7 @@
 *	So, it is better to requery the name in the database. 
 **/
 
+session_start();
 
 if(!$_SESSION['admin_name'])
 {
