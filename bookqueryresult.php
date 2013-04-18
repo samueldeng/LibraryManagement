@@ -12,3 +12,8 @@
 *
 **/
 ?>
+<html>
+	<body>
+		What a Fuck day.
+	</body>
+</html>
