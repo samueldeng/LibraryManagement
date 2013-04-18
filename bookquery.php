@@ -19,28 +19,28 @@ include "./checklogin.php";
 		<script>
 		$(document).ready(function(){
 			$("#showQueryResultButton").click(function(){
-				alert("what a fuck day");
 				$.post(
 					"./bookqueryresult.php",
 					{
-						category:	$("#category"),
-						bookname:	$("#category"), 
-						publisher:	$("#publisher"),
-						year_min:	$("#year_min"),    
-						year_max:	$("#year_max"),
-						author:		$("#author"),
-						price_min:	$("#price_min"),
-						price_max:	$("#price_max"),
+						category:	$("#category").html(),
+						bookname:	$("#category").html(), 
+						publisher:	$("#publisher").html(),
+						year_min:	$("#year_min").html(),    
+						year_max:	$("#year_max").html(),
+						author:		$("#author").html(),
+						price_min:	$("#price_min").html(),
+						price_max:	$("#price_max").html()
 					},
 					function(data,status){
 						if(status=="success"){
-						$("#assume").html(data);//Need to generate a html document displayed in BLOCK.
+						$("#bookQueryResultBlock").html(data);
 						}else{
-						$("#assume").html("Can't get bookquery result from Server.");
+						$("#bookQueryResultBlock").html("Can't get bookquery result from Server.");
 						}
 					}
-				);		
+				);
 			});
+
 		});
 	
 		</script>
