@@ -1,0 +1,21 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+bd	config_connect_database.php	/^$bd = mysql_connect($mysql_hostname, $mysql_user, $mysql_password) or die("oops, cannt connect to the database.");$/;"	v
+bd	login.php	/^*	$bd = mysql_connect($mysql_hostname, $mysql_user, $mysql_password) or die("oops, cannt connect to the database.");$/;"	v
+count	login.php	/^	$count=mysql_num_rows($result);$/;"	v
+firephp	login.php	/^$firephp = FirePHP::getInstance(true);$/;"	v
+mysql_database	config_connect_database.php	/^$mysql_database = "LibraryManagement";$/;"	v
+mysql_hostname	config_connect_database.php	/^$mysql_hostname = "localhost";$/;"	v
+mysql_hostname	login.php	/^*	$mysql_hostname = "localhost";$/;"	v
+mysql_password	config_connect_database.php	/^$mysql_password = "897375";$/;"	v
+mysql_password	login.php	/^*	$mysql_password = "897375";$/;"	v
+mysql_user	config_connect_database.php	/^$mysql_user = "root";$/;"	v
+mysql_user	login.php	/^*	$mysql_user = "root";$/;"	v
+password	login.php	/^	$password=$_POST['password'];$/;"	v
+qry	login.php	/^	$qry = "SELECT admin_id FROM admin WHERE name = '$username' and password= '$password'";$/;"	v
+result	login.php	/^	$result=mysql_query($qry);$/;"	v
+username	login.php	/^	$username=$_POST['username'];$/;"	v
