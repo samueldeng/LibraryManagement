@@ -11,9 +11,9 @@
 
 
 //This Segment code was used in FirePHP
-require_once('FirePHPCore/FirePHP.class.php');
-ob_start();
-$firephp = FirePHP::getInstance(true);
+// require_once('FirePHPCore/FirePHP.class.php');
+// ob_start();
+// $firephp = FirePHP::getInstance(true);
 
  
 include "./config_connect_database.php";

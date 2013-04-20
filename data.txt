@@ -1,0 +1,2 @@
+(1928563827123, Science, Introductory Physics, Random House, 2010, Mark Jones, 46.00, 4)
+(2983473829381, Engineering, Algorithms, MIT, 2004, Charles Leiserson, 150, 9)
