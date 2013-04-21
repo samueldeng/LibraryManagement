@@ -9,8 +9,8 @@
 
 $mysql_hostname = "127.0.0.1";
 $mysql_user = "root";
-$mysql_password = "shampoo5";
-$mysql_database = "LibraryManagement";
+$mysql_password = "password";
+$mysql_database = "BookManagement";
 
 $bd = mysql_connect($mysql_hostname, $mysql_user, $mysql_password) or die("oops, cannt connect to the database.");
 mysql_select_db($mysql_database, $bd) or die("Oops, cannt select the LibraryManagement DB"); 

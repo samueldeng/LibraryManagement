@@ -53,7 +53,7 @@ padding-right: 20px;
 }
 }
 .form-signin {
-max-width: 800px;
+max-width: 230px;
 padding: 19px 29px 29px;
 margin: 0 auto 20px;
 background-color: #f5f5f5;
@@ -165,34 +165,13 @@ margin: 20px 0;
 			</div>
 
 		<div id="inputField" class="container">
-			<form class="form-signin" id="bookQueryForm" method=post action=./bookqueryresult.php>
-				<h2 align="center" class="form-signin-heading">Welcome to the book searching service</h2>
-				<div class="controls controls-row">
-				    <select class="span4" type="text" name='category' id="1" placeholder="Please choose the book category.">
-                    <option>Scinece</option>
-                    <option>Computer and Engineering</option>
-                    <option>Arts</option>
-                    </select>
-	 			<input class="span4" type="text" name='publisher' id="3" placeholder="Please enter the publisher.">
-				</div>
-				
-				<div class="controls controls-row">
-				<input class="span5" type="text" name='title' id="2" placeholder="Please enter the book name.">
-				<input class="span3" type="text" name='author' id="6" placeholder="Please enter the book author.">
-				</div>
-	
-			    <div class="controls controls-row">
-				<input class="span2" type="text"	name="year_min"		id="4" placeholder="year_range_min"/>
-				<input class="span2" type="text"	name="year_max"		id="5"placeholder="year_range_max"/>
-				<input class="span2" type="text"	name="price_min"	id="7"placeholder="price_min"/>
-				<input class="span2" type="text"	name="price_max"	id="8"placeholder="price_max"/>
-				</div>
-				
-                <button type="submit" class="btn btn-primary">Begin searching</button>
-                <button type="button" class="btn">Cancel</button>
-				
+			<form class="form-signin" method="post" action="checkin_book.php">
+				<h2 align="center" class="form-signin-heading">Checking in</h2>
+				<label for="Card ID">Card ID:</label><input type="text" name="card_id" />
+				<label for="ISBN">ISBN:</label><input type="text" name="book_id" />
+				<button type="submit" class="btn btn-primary">Check in book</button>
 			</form>
-		</div>
+        </div>
 		
 		<div id="push"></div>
 		</div>
