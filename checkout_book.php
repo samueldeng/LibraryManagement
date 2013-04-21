@@ -5,7 +5,7 @@
 
 	$card_id = $_POST['card_id'];
 	$book_id = $_POST['book_id'];
-	$date_out = date("m/d/y");
+	//$date_out = date("m/d/y");
 	$admin_id = $_POST['admin_id'];
 
 	include "./config_connect_database.php";
@@ -22,7 +22,7 @@
 			$borrow_qry = "INSERT INTO borrow_record
 							(book_id, card_id, date_out, admin_id)
 					  		VALUES
-					  		('$book_id', '$card_id', '$date_out', '$admin_id')";
+					  		('$book_id', '$card_id', CURDATE(), '$admin_id')";
 
 			$borrow_result = mysql_query($borrow_qry) or die ('Error: '.mysql_error ());
 			
@@ -34,15 +34,26 @@
 			}
 
 		} else {
-			echo("There are not enough books available to be checked out at this time!");
+			// 且输出最近归还的时间
+			$sth = $dbh->query(
+				"SELECT DATE_FORMAT( DATE_ADD( date_out, INTERVAL 40 DAY),  '%m/%d/%Y' ) 
+				FROM borrow_record
+				WHERE book_id = '$book_id'
+				AND date_in is NULL
+				ORDER BY date_out ASC");
+			$next_avail = $sth->fetchColumn();
+
+			echo("This book is not currently available. It should be available on ".$next_avail);
 		}
 	}
 	// Display books checked out by this user that haven't been returned yet.
-	$result = $dbh->query("SELECT * from book WHERE book_id in 
-							(SELECT book_id 
-							FROM borrow_record 
-							WHERE card_id = '$card_id'
-							AND date_in is NULL)");	
+	$result = $dbh->query(
+		"SELECT * from book 
+		WHERE book_id in 
+			(SELECT book_id 
+			FROM borrow_record 
+			WHERE card_id = '$card_id'
+			AND date_in is NULL)");	
 ?>
 
 <?php if(result) : ?>

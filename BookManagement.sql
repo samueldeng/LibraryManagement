@@ -57,10 +57,14 @@ CREATE TABLE IF NOT EXISTS `book` (
 -- Trigger to set the qty_available for each new book inputted
 --
 
+DELIMITER //
+
 CREATE TRIGGER `set_qty_available` BEFORE INSERT ON `book`
  FOR EACH ROW BEGIN
 SET NEW.qty_available = NEW.qty_total;
 END;
+//
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -83,11 +87,14 @@ CREATE TABLE IF NOT EXISTS `borrow_record` (
 -- Trigger to update the qty_available when a book is checked out
 --
 
+DELIMITER //
+
 CREATE TRIGGER `decrement_qty_available` AFTER INSERT ON `borrow_record`
  FOR EACH ROW BEGIN
 UPDATE book SET book.qty_available = book.qty_available - 1 WHERE book.book_id = NEW.book_id;
 END;
-
+//
+DELIMITER ;
 -- --------------------------------------------------------
 
 --
