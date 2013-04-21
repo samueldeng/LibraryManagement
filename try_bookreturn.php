@@ -53,7 +53,7 @@ padding-right: 20px;
 }
 }
 .form-signin {
-max-width: 800px;
+max-width: 230px;
 padding: 19px 29px 29px;
 margin: 0 auto 20px;
 background-color: #f5f5f5;
