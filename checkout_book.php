@@ -1,6 +1,7 @@
 <?php
 
 include "./config_connect_database.php";
+include "./checklogin.php";
 
 $card_id = $_POST['card_id'];
 $book_id = $_POST['book_id'];
@@ -26,6 +27,7 @@ if($qty_avail > 0){
 	}
 } else {
 	echo("There are not enough books available to be checked out at this time!");
+        //输出最近归还时间
 }
 
 ?>
