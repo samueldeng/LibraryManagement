@@ -2,10 +2,14 @@
 	include "./config_connect_database.php";
 	include "layout_top.php";
 
+
 	$card_id = $_POST['card_id'];
 	$book_id = $_POST['book_id'];
 	$date_out = date("m/d/y");
 	$admin_id = $_POST['admin_id'];
+
+	include "./config_connect_database.php";
+	include "./checklogin.php";
 
 	// Book checkout
 	if($book_id != '' and $admin_id != '') {
@@ -38,10 +42,11 @@
 							(SELECT book_id 
 							FROM borrow_record 
 							WHERE card_id = '$card_id'
-							AND date_in is NULL)");
+							AND date_in is NULL)");	
 ?>
 
 <?php if(result) : ?>
+	<?php //Display books checked out by this user that haven't been returned yet. ?>
 	<h3>Books currently checked out by Card <?php echo $card_id; ?></h3>
 	<table class="table table-striped">
 		<tr>
