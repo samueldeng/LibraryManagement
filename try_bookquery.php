@@ -10,7 +10,7 @@
 *	
 *
 **/
-
+include "checklogin.php";
 ?>
 <html lang="en">
 	<head>
@@ -90,7 +90,7 @@ margin: 20px 0;
 			$("#bookQueryForm").submit(function(event){
 				event.preventDefault();
 				$.post(
-					"./bookqueryresult.php",
+					"./try_bookqueryresult.php",
 					{
 						category:$("#1").val(),
 						title:$("#2").val(), 
@@ -168,11 +168,7 @@ margin: 20px 0;
 				<h2 align="center" class="form-signin-heading">Welcome to the book searching service</h2>
 				
 				<div class="controls controls-row">
-				    <select class="span4" type="text" name='category' id="1" placeholder="Please choose the book category.">
-                    <option>Scinece</option>
-                    <option>Computer and Engineering</option>
-                    <option>Arts</option>
-                    </select>
+				<input class="span4" type="text"	name="category"	id="1" placeholder="Please enter the category."/>
 	 			<input class="span4" type="text" name='publisher' id="3" placeholder="Please enter the publisher.">
 				</div>
 
@@ -192,70 +188,6 @@ margin: 20px 0;
                 <button type="button" class="btn">Cancel</button>
 				
 			</form>
-		</div>
-		<div id="outputField" class="container">
-			<table class="table table-striped">
-<tr>
-<th>ISBN</th>
-<th>category</th>
-<th>title</th>
-<th>publishing 	house</th>
-<th>year</th>
-<th>author</th>
-<th>price</th>
-<th>collection</th>
-<th>stock</th>
-</tr>
-
-<tr>
-<td>book1.1</td>
-<td>book1.2</td>
-<td>book1.3</td>
-<td>book1.4</td>
-<td>book1.5</td>
-<td>book1.6</td>
-<td>book1.7</td>
-<td>book1.8</td>
-<td>book1.9</td>
-</tr> 	
-
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-
-            </table>
 		</div>
 	
 		<div id="bookQueryResultBlock">
