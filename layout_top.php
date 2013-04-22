@@ -111,7 +111,7 @@ margin: 20px 0;
 						<li><a href="try_bookquery.php">Book_query</a></li>
 					</ul>
 
-					<?php if(!$_SESSION['admin_name']) : ?>
+					<?php if($_SESSION['admin_name']) : ?>
 						<ul class="nav nav-tabs">
 							<li class="dropdown">
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#">
