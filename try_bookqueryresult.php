@@ -5,6 +5,7 @@
 
 
 include "./config_connect_database.php";
+include "./checklogin.php";
 
 $isAllEmpty = true;
 

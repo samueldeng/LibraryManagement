@@ -6,7 +6,7 @@
 			$("#bookQueryForm").submit(function(event){
 				event.preventDefault();
 				$.post(
-					"./bookqueryresult.php",
+					"./try_bookqueryresult.php",
 					{
 						category:$("#1").val(),
 						title:$("#2").val(), 
@@ -29,7 +29,7 @@
 	</head>
 	<body>
 		<div id="inputField">
-			<form id="bookQueryForm" method=post action=./bookqueryresult.php>
+			<form id="bookQueryForm" method=post action=./try_bookqueryresult.php>
 				category:<input type="text"	name="category"		id="1"/>
 				title:<input type="text"	name="title"		id="2"/> 
 				publisher:<input type="text"	name="publisher"	id="3"/>

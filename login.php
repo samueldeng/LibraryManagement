@@ -51,13 +51,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 		echo "Login Successfully!<br>";
 		echo "please click";
-		echo "<a href='bookquery.php'>Here</a>";
+		echo "<a href='try_bookquery.php'>Here</a>";
 		echo "to rediret to your home<br>";
-	}else{
+	} else {
 		
 		echo "username or password is wrong<br>";
 		echo "please click ";
-		echo "<a href='index.html'>Here </a>";
+		echo "<a href='try.php'>Here </a>";
 		echo "to return login page<br>";
 	}
 }
