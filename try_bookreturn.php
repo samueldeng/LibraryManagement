@@ -86,31 +86,6 @@ margin: 20px 0;
 </style>
     <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
 	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-	<script>
-		$(document).ready(function(){
-			$("#bookQueryForm").submit(function(event){
-				event.preventDefault();
-				$.post(
-					"./bookqueryresult.php",
-					{
-						category:$("#1").val(),
-						title:$("#2").val(), 
-						publisher:$("#3").val(),
-						year_min:$("#4").val(),    
-						year_max:$("#5").val(),
-						author:	$("#6").val(),
-						price_min:$("#7").val(),
-						price_max:$("#8").val()
-					},
-					function(data){
-						$("#bookQueryResultBlock").html(data);
-					}
-				);
-
-			});
-
-		});
-	</script> 
 	</head>
 	
 	
@@ -165,7 +140,7 @@ margin: 20px 0;
 			</div>
 
 		<div id="inputField" class="container">
-			<form class="form-signin" method="post" action="checkin_book.php">
+			<form class="form-signin" method="post" action="try_checkin_book_result.php">
 				<h2 align="center" class="form-signin-heading">Checking in</h2>
 				<label for="Card ID">Card ID:</label><input type="text" name="card_id" />
 				<label for="ISBN">ISBN:</label><input type="text" name="book_id" />
