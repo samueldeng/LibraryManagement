@@ -12,7 +12,7 @@ session_start();
 
 if(!$_SESSION['admin_name'])
 {
-	header("Location: index.php");
+	header("Location: try.php");
 }
 
 ?>
