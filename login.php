@@ -48,7 +48,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	if($count==1){
 		
 		$_SESSION['admin_name']=$username;
-
+		header("Location: try_bookquery.php");
+		echo $_SESSION['admin_name']; 
+if(isset($_SESSION['admin_name'])) {
+	echo "isset";
+} else {
+	echo "notset";
+}
 		echo "Login Successfully!<br>";
 		echo "please click";
 		echo "<a href='try_bookquery.php'>Here</a>";

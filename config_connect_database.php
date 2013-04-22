@@ -9,7 +9,7 @@
 
 $mysql_hostname = "127.0.0.1";
 $mysql_user = "root";
-$mysql_password = "password";
+$mysql_password = "19901212";
 $mysql_database = "BookManagement";
 
 $bd = mysql_connect($mysql_hostname, $mysql_user, $mysql_password) or die("oops, cannt connect to the database.");

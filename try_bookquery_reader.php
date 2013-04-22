@@ -121,7 +121,6 @@ margin: 20px 0;
 					<a class="brand" href="try_bookquery_reader.php">Librarymanage System</a>
 					<ul class="nav">
 						<li class="active"><a href="try_bookquery_reader.php">Book_query</a></li>
-						<li><a href="try_bookshow_reader.php">Historybook_show</a></li>
 					</ul>
 					<ul class="nav pull-right">
 						<li><a href="try.php">Exit</a></li>
