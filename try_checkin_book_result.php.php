@@ -84,32 +84,7 @@ margin: 20px 0;
 }
 </style>
     <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
-	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-	<script>
-		$(document).ready(function(){
-			$("#bookQueryForm").submit(function(event){
-				event.preventDefault();
-				$.post(
-					"./try_bookqueryresult.php",
-					{
-						category:$("#1").val(),
-						title:$("#2").val(), 
-						publisher:$("#3").val(),
-						year_min:$("#4").val(),    
-						year_max:$("#5").val(),
-						author:	$("#6").val(),
-						price_min:$("#7").val(),
-						price_max:$("#8").val()
-					},
-					function(data){
-						$("#bookQueryResultBlock").html(data);
-					}
-				);
-
-			});
-
-		});
-	</script> 
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script> 
 	</head>
 	
 	
@@ -174,8 +149,8 @@ $book_id = $_POST['book_id'];
 
 
 
-$query = "SELECT * FROM borrow_record 
-             WHERE card_id='$card_id' and book_id='$book_id'";
+$query = "SELECT * FROM 'borrow_record'
+             WHERE card_id='$card_id' and book_id='$book_id' and 'date_in' is null";
 
 
 
@@ -187,8 +162,10 @@ if($has_borrow_record){
 	 mysql_query("UPDATE borrow_record
                  SET date_in = CURDATE()
                  WHERE card_id='$card_id' and book_id='$book_id'");
-    	echo "checkin successfully";
+    	echo "<h1> return successfully </h1><br>";
 
+} else {
+    echo "<h1>Ha,Ha,Ha.don't cheat me!!!!</h1><br>";
 }
 $result = $dbh->query("SELECT * from book
 			WHERE book_id in (SELECT book_id FROM borrow_record 
