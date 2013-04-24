@@ -161,10 +161,10 @@ if($has_borrow_record){
 	 mysql_query("UPDATE borrow_record
                  SET date_in = CURDATE()
                  WHERE card_id='$card_id' and book_id='$book_id'");
-    	echo "<div class='alert alert-success' width='200'>return successfully</div>";
+    	echo "<div class='alert alert-success'>Return Successfully</div>";
 
 } else {
-    echo "<div class='alert alert-error' width='200'><p>Error</p></div>";
+    echo "<div class='alert alert-error'><p>Error</p></div>";
 }
 $result = $dbh->query("SELECT * from book
 			WHERE book_id in (SELECT book_id FROM borrow_record 

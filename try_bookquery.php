@@ -245,7 +245,7 @@ include "layout_top.php";
 				</div>
 				
                 <button type="submit" class="btn btn-primary">Begin searching</button>
-                <button type="button" class="btn">Cancel</button>
+                
 				
 			</form>
 		</div>
