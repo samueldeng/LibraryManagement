@@ -90,9 +90,16 @@ margin: 20px 0;
 		$(document).ready(function() {
 			$('.submit-btn').click(function(e){
 				e.preventDefault();
+				var numberRegex = /^[+-]?\d+(\.\d+)?([eE][+-]?\d+)?$/;
 				var book_id = $('#book_id').val();
+				var year = $('#year').val();
+				var qty = $('#qty_total').val();
 				if(book_id.length < 13) {
 					alert("ISBN must be 13 digits.")
+				} else if (year.length != 4 || !numberRegex.test(year)) {
+					alert("Year must be a 4-digit number.");
+				} else if (!numberRegex.test(qty)) {
+					alert("Quantity must be a number.");
 				} else {
 					$('.form-signin').submit();
 				}

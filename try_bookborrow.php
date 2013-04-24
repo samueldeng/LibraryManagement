@@ -143,7 +143,7 @@ margin: 20px 0;
 		} else if($admin_id != '' && $dbh->query($admin_qry)->fetchColumn() == 0) {
 			echo("<div class='alert alert-error'>Please enter a valid admin ID.</div>");
 		} else if($dbh->query($dups_qry)->fetchColumn() > 0) {
-			echo("<div class='alert alert-error'>This book has already been checked out under card ".$card_id);
+			echo("<div class='alert alert-error'>This book has already been checked out under card ".$card_id." It must be returned before it can be checked out again.");
 		} else {
 
 			// Book checkout
