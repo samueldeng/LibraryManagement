@@ -88,6 +88,103 @@ margin: 20px 0;
 	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 	<script>
 		$(document).ready(function(){
+                    $("#1").keyup(function(){   
+                        $.post(
+					"./try_bookqueryresult.php",
+					{
+						category:$("#1").val(),
+						title:$("#2").val(),
+						publisher:$("#3").val(),
+						year_min:$("#4").val(),
+						year_max:$("#5").val(),
+						author:	$("#6").val(),
+						price_min:$("#7").val(),
+						price_max:$("#8").val()
+//                                              sort:     $('#9').val()
+					},
+					function(data){
+						$("#bookQueryResultBlock").html(data);
+					}
+				);
+                    });
+                   $("#2").keyup(function(){   
+                        $.post(
+					"./try_bookqueryresult.php",
+					{
+						category:$("#1").val(),
+						title:$("#2").val(),
+						publisher:$("#3").val(),
+						year_min:$("#4").val(),
+						year_max:$("#5").val(),
+						author:	$("#6").val(),
+						price_min:$("#7").val(),
+						price_max:$("#8").val()
+//                                              sort:     $('#9').val()
+					},
+					function(data){
+						$("#bookQueryResultBlock").html(data);
+					}
+				);
+                    });
+                   $("#3").keyup(function(){   
+                        $.post(
+					"./try_bookqueryresult.php",
+					{
+						category:$("#1").val(),
+						title:$("#2").val(),
+						publisher:$("#3").val(),
+						year_min:$("#4").val(),
+						year_max:$("#5").val(),
+						author:	$("#6").val(),
+						price_min:$("#7").val(),
+						price_max:$("#8").val()
+//                                              sort:     $('#9').val()
+					},
+					function(data){
+						$("#bookQueryResultBlock").html(data);
+					}
+				);
+                    });
+                   $("#6").keyup(function(){   
+                        $.post(
+					"./try_bookqueryresult.php",
+					{
+						category:$("#1").val(),
+						title:$("#2").val(),
+						publisher:$("#3").val(),
+						year_min:$("#4").val(),
+						year_max:$("#5").val(),
+						author:	$("#6").val(),
+						price_min:$("#7").val(),
+						price_max:$("#8").val()
+//                                              sort:     $('#9').val()
+					},
+					function(data){
+						$("#bookQueryResultBlock").html(data);
+					}
+				);
+                    });
+                    
+                     $.post(
+					"./try_bookqueryresult.php",
+					{
+						category:$("#1").val(),
+						title:$("#2").val(), 
+						publisher:$("#3").val(),
+						year_min:$("#4").val(),    
+						year_max:$("#5").val(),
+						author:	$("#6").val(),
+						price_min:$("#7").val(),
+						price_max:$("#8").val()
+					},
+					function(data){
+						$("#bookQueryResultBlock").html(data);
+					}
+				);
+                    
+                    
+                    
+
 			$("#bookQueryForm").submit(function(event){
 				event.preventDefault();
 				$.post(

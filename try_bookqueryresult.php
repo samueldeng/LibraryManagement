@@ -9,7 +9,7 @@ include "./config_connect_database.php";
 $isAllEmpty = true;
 
 if(($category=$_POST['category'])!==""){
-    $where_cond .="category='$category' AND ";
+    $where_cond .="category like'$category%' AND ";
     $isAllEmpty = false;
 }
 if(($title=$_POST['title'])!==""){
@@ -17,7 +17,7 @@ if(($title=$_POST['title'])!==""){
     $isAllEmpty = false;
 }
 if(($publisher=$_POST['publisher'])!==""){
-    $where_cond .= "publisher='$publisher' AND ";
+    $where_cond .= "publisher like '$publisher%' AND ";
     $isAllEmpty = false;
 }
 if(($year_min=$_POST['year_min'])!==""){
@@ -29,7 +29,7 @@ if(($year_max=$_POST['year_max'])!==""){
     $isAllEmpty = false;
 }
 if(($author=$_POST['author'])!==""){
-    $where_cond.= "author='$author' AND ";
+    $where_cond.= "author like'$author%' AND ";
     $isAllEmpty = false;
 }
 if(($price_min=$_POST['price_min'])!==""){
