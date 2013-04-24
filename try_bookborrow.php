@@ -126,15 +126,24 @@ margin: 20px 0;
 <?php
 	if($_SERVER["REQUEST_METHOD"] == "POST"){
 		$card_qry = "SELECT COUNT(*) FROM card WHERE card_id = '$card_id'";
+
 		$book_qry = "SELECT COUNT(*) FROM book WHERE book_id = '$book_id'";
+
 		$admin_qry = "SELECT COUNT(*) FROM admin WHERE admin_id = '$admin_id'";
+
+		$dups_qry = "SELECT COUNT(*) FROM borrow_record
+					WHERE card_id = '$card_id'
+					AND book_id = '$book_id'
+					AND date_in is NULL";
 
 		if($dbh->query($card_qry)->fetchColumn() == 0) {
 			echo("<div class='alert alert-error'>Please enter a valid card ID.</div>");
 		} else if($book_id != '' && $dbh->query($book_qry)->fetchColumn() == 0) {
 			echo("<div class='alert alert-error'>Please enter a valid ISBN.</div>");
-		} else if($book_id != '' && $dbh->query($admin_qry)->fetchColumn() == 0) {
+		} else if($admin_id != '' && $dbh->query($admin_qry)->fetchColumn() == 0) {
 			echo("<div class='alert alert-error'>Please enter a valid admin ID.</div>");
+		} else if($dbh->query($dups_qry)->fetchColumn() > 0) {
+			echo("<div class='alert alert-error'>This book has already been checked out under card ".$card_id." It must be returned before it can be checked out again.");
 		} else {
 
 			// Book checkout
