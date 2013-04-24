@@ -7,7 +7,8 @@
 *	( 书号, 类别, 书名, 出版社, 年份, 作者, 价格, 总藏书量, 库存 )
 *
 *	可选要求: 可以按用户指定属性对图书信息进行排序. (默认是书名)
-*	
+*
+*	This is the query page viewable to anyone, without an account.
 *
 **/
 
@@ -93,9 +94,9 @@ margin: 20px 0;
 					"./try_bookqueryresult.php",
 					{
 						category:$("#1").val(),
-						title:$("#2").val(), 
+						title:$("#2").val(),
 						publisher:$("#3").val(),
-						year_min:$("#4").val(),    
+						year_min:$("#4").val(),
 						year_max:$("#5").val(),
 						author:	$("#6").val(),
 						price_min:$("#7").val(),
@@ -110,10 +111,10 @@ margin: 20px 0;
 			});
                        
 		});
-	</script> 
+	</script>
 	</head>
-	
-	
+
+
 	<body>
 		<div id="wrap">
 
@@ -137,12 +138,12 @@ margin: 20px 0;
 				<input class="span4" type="text"	name="category"	id="1" placeholder="Please enter the category."/>
 	 			<input class="span4" type="text" name='publisher' id="3" placeholder="Please enter the publisher.">
 				</div>
-				
+
 				<div class="controls controls-row">
 				<input class="span5" type="text" name='title' id="2" placeholder="Please enter the book name.">
 				<input class="span3" type="text" name='author' id="6" placeholder="Please enter the book author.">
 				</div>
-	
+
 			    <div class="controls controls-row">
 				<input class="span2" type="text"	name="year_min"		id="4" placeholder="year_range_min"/>
 				<input class="span2" type="text"	name="year_max"		id="5"placeholder="year_range_max"/>
@@ -155,20 +156,20 @@ margin: 20px 0;
                                     <option value="qty_available">Available Quantities</option>
                                 </select>-->
 				</div>
-				
+
                 <button type="submit" class="btn btn-primary">Begin searching</button>
                 <button type="button" class="btn">Cancel</button>
-				
+
 			</form>
 		</div>
 
-	
+
 		<div id="bookQueryResultBlock">
 		</div>
-		
+
 		<div id="push"></div>
 		</div>
-		
+
 	<div id="footer">
 		<div class="container" align="center">
 			<p class="muted credit">
@@ -182,8 +183,8 @@ margin: 20px 0;
 			</p>
 		</div>
 	</div>
-	
-	
+
+
 		<script src="http://code.jquery.com/jquery.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 	</body>
