@@ -161,6 +161,9 @@ if($has_borrow_record){
 	 mysql_query("UPDATE borrow_record
                  SET date_in = CURDATE()
                  WHERE card_id='$card_id' and book_id='$book_id'");
+         mysql_query("UPDATE book
+                 SET qty_available=qty_available+1
+                 WHERE book_id = '$book_id'");
     	echo "<div class='alert alert-success'>Return Successfully</div>";
 
 } else {

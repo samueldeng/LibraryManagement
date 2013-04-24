@@ -43,7 +43,7 @@
 						</ul>
 									
 						<ul class="nav pull-right">
-							<li><a href="try.php">Exit</a></li>
+							<li><a href="logout.php">Exit</a></li>
 						</ul>
 						<p class="navbar-text" align="right">Hello, <?php echo $_SESSION['admin_name'] ?>!<!--here maybe need a php transfered information-username--></p>
 
