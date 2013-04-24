@@ -1,11 +1,10 @@
 <?php
-//require_once('FirePHPCore/FirePHP.class.php');
-//ob_start();
-//$firephp = FirePHP::getInstance(true);
+require_once('FirePHPCore/FirePHP.class.php');
+ob_start();
+$firephp = FirePHP::getInstance(true);
 
 
 include "./config_connect_database.php";
-include "./checklogin.php";
 
 $isAllEmpty = true;
 
@@ -14,7 +13,7 @@ if(($category=$_POST['category'])!==""){
     $isAllEmpty = false;
 }
 if(($title=$_POST['title'])!==""){
-    $where_cond .= "title='$title' AND ";
+    $where_cond .= "title like '%$title%' AND ";
     $isAllEmpty = false;
 }
 if(($publisher=$_POST['publisher'])!==""){
@@ -48,11 +47,15 @@ if($isAllEmpty == true){
     $query = "SELECT * FROM book WHERE ". $where_cond;
 }
 
+//$firephp->log($_POST['sort'],"sort");
+//$sort = $_POST['sort'];
 
-
-//$firephp->log($query,"query");
+//$query .= " ORDER BY '$sort'";
+        
+$firephp->log($query,"query");
 $result=mysql_query($query);
 $count=mysql_num_rows($result);
+
 ?>
 <table class="table table-striped">
     <tr>

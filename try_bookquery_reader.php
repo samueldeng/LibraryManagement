@@ -100,6 +100,7 @@ margin: 20px 0;
 						author:	$("#6").val(),
 						price_min:$("#7").val(),
 						price_max:$("#8").val()
+//                                              sort:     $('#9').val()
 					},
 					function(data){
 						$("#bookQueryResultBlock").html(data);
@@ -107,7 +108,7 @@ margin: 20px 0;
 				);
 
 			});
-
+                       
 		});
 	</script> 
 	</head>
@@ -147,6 +148,12 @@ margin: 20px 0;
 				<input class="span2" type="text"	name="year_max"		id="5"placeholder="year_range_max"/>
 				<input class="span2" type="text"	name="price_min"	id="7"placeholder="price_min"/>
 				<input class="span2" type="text"	name="price_max"	id="8"placeholder="price_max"/>
+<!--                                <select id="9">
+                                    <option value="book_id" selected>Book_id</option>
+                                    <option value="year">Year</option>
+                                    <option value="price">Price</option>
+                                    <option value="qty_available">Available Quantities</option>
+                                </select>-->
 				</div>
 				
                 <button type="submit" class="btn btn-primary">Begin searching</button>
