@@ -1,6 +1,9 @@
 <?php
 
 include "./config_connect_database.php";
+include "checklogin.php";
+include "header.html"
+include "layout_top.php";
 
 $file_temp = $_FILES['uploadedfile']['tmp_name'];
 
@@ -15,5 +18,7 @@ if($result){
 } else{
 	echo("<br>Error");
 }
+
+include "layout_bottom.php";
 
 ?>

@@ -7,7 +7,7 @@
 *	( 书号, 类别, 书名, 出版社, 年份, 作者, 价格, 总藏书量, 库存 )
 *
 *	可选要求: 可以按用户指定属性对图书信息进行排序. (默认是书名)
-*	
+*
 *
 **/
 
@@ -87,26 +87,45 @@ margin: 20px 0;
 	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 
 	</head>
-	
-	
-	<?php 
+
+
+	<?php
 include "./config_connect_database.php";
 include "checklogin.php";
 include "layout_top.php";
 ?>
+
+<?php
+
+include "./config_connect_database.php";
+
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+	$card_id = $_POST['card_id'];
+
+	$query = "DELETE FROM card
+				WHERE card_id = '$card_id'";
+
+	$result = mysql_query($query);
+	if($result){
+		echo("<div class='alert alert-success'>Card deleted.</div>");
+	} else{
+		echo("<div class='alert alert-error'>Error</div>");
+	}
+}
+?>
 		<div id="inputField" class="container">
-			
-			<form class="form-signin" method="post" action="delete_card.php">
+
+			<form class="form-signin" method="post" action="try_card_delete.php">
 				<h2 align="center" class="form-signin-heading">Delete a card</h2>
 				<label for="ID">ID:</label><input type="text" name="card_id" />
 				<button class="btn btn-primary" type="submit">Delete card</button>
-			</form>	
-			
+			</form>
+
 		</div>
-		
+
 		<div id="push"></div>
 		</div>
-		
+
 	<div id="footer">
 		<div class="container" align="center">
 			<p class="muted credit">
@@ -120,8 +139,8 @@ include "layout_top.php";
 			</p>
 		</div>
 	</div>
-	
-	
+
+
 		<script src="http://code.jquery.com/jquery.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 	</body>
