@@ -90,7 +90,6 @@ margin: 20px 0;
 		$(document).ready(function() {
 			$('.submit-btn').click(function(e){
 				e.preventDefault();
-				alert('in');
 				var book_id = $('#book_id').val();
 				if(book_id.length < 13) {
 					alert("ISBN must be 13 digits.")
