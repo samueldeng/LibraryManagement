@@ -124,75 +124,75 @@ margin: 20px 0;
 
 <center>
 <?php
+	if($_SERVER["REQUEST_METHOD"] == "POST"){
+		$card_qry = "SELECT COUNT(*) FROM card WHERE card_id = '$card_id'";
+		$book_qry = "SELECT COUNT(*) FROM book WHERE book_id = '$book_id'";
+		$admin_qry = "SELECT COUNT(*) FROM admin WHERE admin_id = '$admin_id'";
 
-	$card_qry = "SELECT COUNT(*) FROM card WHERE card_id = '$card_id'";
-	$book_qry = "SELECT COUNT(*) FROM book WHERE book_id = '$book_id'";
-	$admin_qry = "SELECT COUNT(*) FROM admin WHERE admin_id = '$admin_id'";
+		if($dbh->query($card_qry)->fetchColumn() == 0) {
+			echo("<div class='alert alert-error'>Please enter a valid card ID.</div>");
+		} else if($book_id != '' && $dbh->query($book_qry)->fetchColumn() == 0) {
+			echo("<div class='alert alert-error'>Please enter a valid ISBN.</div>");
+		} else if($book_id != '' && $dbh->query($admin_qry)->fetchColumn() == 0) {
+			echo("<div class='alert alert-error'>Please enter a valid admin ID.</div>");
+		} else {
 
-	if($dbh->query($card_qry)->fetchColumn() == 0) {
-		echo("<div class='alert alert-error'>Please enter a valid card ID.</div>");
-	} else if($book_id != '' && $dbh->query($book_qry)->fetchColumn() == 0) {
-		echo("<div class='alert alert-error'>Please enter a valid ISBN.</div>");
-	} else if($book_id != '' && $dbh->query($admin_qry)->fetchColumn() == 0) {
-		echo("<div class='alert alert-error'>Please enter a valid admin ID.</div>");
-	} else {
+			// Book checkout
+			// Check if there are enough books available
+			$qty_avail = $dbh->query("SELECT qty_available FROM book
+							WHERE book_id = '$book_id'")->fetchColumn();
 
-		// Book checkout
-		// Check if there are enough books available
-		$qty_avail = $dbh->query("SELECT qty_available FROM book
-						WHERE book_id = '$book_id'")->fetchColumn();
+			if($qty_avail > 0){
+				// create borrow_record
+				$borrow_qry = "INSERT INTO borrow_record
+								(book_id, card_id, date_out, admin_id)
+						  		VALUES
+						  		('$book_id', '$card_id', CURDATE(), '$admin_id')";
 
-		if($qty_avail > 0){
-			// create borrow_record
-			$borrow_qry = "INSERT INTO borrow_record
-							(book_id, card_id, date_out, admin_id)
-					  		VALUES
-					  		('$book_id', '$card_id', CURDATE(), '$admin_id')";
+				$borrow_result = mysql_query($borrow_qry) or die ('Error: '.mysql_error ());
 
-			$borrow_result = mysql_query($borrow_qry) or die ('Error: '.mysql_error ());
+				if($borrow_result){
+					echo("<div class='alert alert-success'>Book successfully checked out.</div>");
 
-			if($borrow_result){
-				echo("<div class='alert alert-success'>Book successfully checked out.</div>");
-
+				} else {
+					echo("<div class='alert alert-error'>Error</div>");
+				}
 			} else {
-				echo("<div class='alert alert-error'>Error</div>");
-			}
-		} else {
-			// 且输出最近归还的时间
-			$sth = $dbh->query(
-				"SELECT DATE_FORMAT( DATE_ADD( date_out, INTERVAL 40 DAY),  '%m/%d/%Y' )
-				FROM borrow_record
-				WHERE book_id = '$book_id'
-				AND date_in is NULL
-				ORDER BY date_out ASC");
-			$next_avail = $sth->fetchColumn();
-			if($next_avail) {
-				echo("<div class='alert alert-error'>This book is not currently available. It should be available on ".$next_avail."</div>");
-			}
-		}
-
-		$records_qry = "SELECT count(*) from book
-						WHERE book_id in
-							(SELECT book_id
-							FROM borrow_record
-							WHERE card_id = '$card_id'
-							AND date_in is NULL)";
-
-		if($dbh->query($records_qry)->fetchColumn() == 0) {
-			echo("<div class='alert alert-error'>There are no books checked out under this ID.</div>");
-		} else {
-
-			// Get books checked out by this user that haven't been returned yet.
-			$result = $dbh->query(
-				"SELECT * from book
-				WHERE book_id in
-					(SELECT book_id
+				// 且输出最近归还的时间
+				$sth = $dbh->query(
+					"SELECT DATE_FORMAT( DATE_ADD( date_out, INTERVAL 40 DAY),  '%m/%d/%Y' )
 					FROM borrow_record
-					WHERE card_id = '$card_id'
-					AND date_in is NULL)");
+					WHERE book_id = '$book_id'
+					AND date_in is NULL
+					ORDER BY date_out ASC");
+				$next_avail = $sth->fetchColumn();
+				if($next_avail) {
+					echo("<div class='alert alert-error'>This book is not currently available. It should be available on ".$next_avail."</div>");
+				}
+			}
+
+			$records_qry = "SELECT count(*) from book
+							WHERE book_id in
+								(SELECT book_id
+								FROM borrow_record
+								WHERE card_id = '$card_id'
+								AND date_in is NULL)";
+
+			if($dbh->query($records_qry)->fetchColumn() == 0) {
+				echo("<div class='alert alert-error'>There are no books checked out under this ID.</div>");
+			} else {
+
+				// Get books checked out by this user that haven't been returned yet.
+				$result = $dbh->query(
+					"SELECT * from book
+					WHERE book_id in
+						(SELECT book_id
+						FROM borrow_record
+						WHERE card_id = '$card_id'
+						AND date_in is NULL)");
+			}
 		}
 	}
-
 ?>
 
 <p>

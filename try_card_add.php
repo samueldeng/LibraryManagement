@@ -7,7 +7,7 @@
 *	( 书号, 类别, 书名, 出版社, 年份, 作者, 价格, 总藏书量, 库存 )
 *
 *	可选要求: 可以按用户指定属性对图书信息进行排序. (默认是书名)
-*	
+*
 *
 **/
 
@@ -24,6 +24,8 @@
 html,
 body {
 height: 100%;
+text-align:center;
+margin: 0 auto;
 /* The html and body elements cannot have any padding or margin. */
 }
 /* Wrapper for page content to push down footer */
@@ -82,33 +84,81 @@ max-width: 1100px;
 .container .credit {
 margin: 20px 0;
 }
+.alert {
+	min-width: 400px;
+	max-width: 100px;
+	margin: 0 auto 20px;
+}
 </style>
     <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
-	<script src="http://code.jquery.com/jquery-1.9.1.js"></script> 
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 	</head>
-	
-	
-<?php 
+
+
+<?php
 include "./config_connect_database.php";
 include "checklogin.php";
 include "layout_top.php";
+
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+	$card_id = $_POST['card_id'];
+	$name = $_POST['name'];
+	$department = $_POST['department'];
+	$card_type = $_POST['card_type'];
+
+	$query = "INSERT INTO card
+				(card_id, name, department, card_type)
+				VALUES
+				('$card_id', '$name', '$department', '$card_type')";
+
+
+	$result = $dbh->query($query);
+	if($result){
+		echo("<div class='alert alert-success'>Card successfully added!</div>");
+	} else{
+		// $error = $result->errorInfo();
+		// print_r($error);
+		echo("<div class='alert alert-error'>Error</div>");
+	}
+}
 ?>
-		<div id="inputField" class="container">
-			
-			
-			<form class="form-signin" method="post" action="register_card.php">
-				<h2 align="center" class="form-signin-heading">Add a card</h2>
-				<label for="ID">ID:</label><input type="text" name="card_id" />
-				<label for="ID">Name:</label><input type="text" name="name" />
-				<label for="ID">Department</label><input type="text" name="department" />
-				<label for="ID">Type:</label><input type="text" name="card_type" />
-				<button class="btn btn-primary" type="submit">Add card</button>
-			</form>	
-		</div>
-		
-		<div id="push"></div>
-		</div>
-		
+
+<script>
+	$(document).ready(function() {
+		$('.submit-btn').click(function(e){
+			e.preventDefault();
+			var numberRegex = /^[+-]?\d+(\.\d+)?([eE][+-]?\d+)?$/;
+			var card_id = $('#card_id').val();
+			var card_name = $('#card_name').val();
+			var dept = $('#dept').val();
+			var card_type = $('#card_type').val();
+
+			if(card_id.length != 10 || !numberRegex.test(card_id)) {
+				alert("Card ID must be a 10-digit number.")
+			} else if (card_name == '' || dept == '' || card_type == ''){
+				alert("One or more fields is missing!");
+			} else {
+				$('.form-signin').submit();
+			}
+		});
+	});
+</script>
+	<div id="inputField" class="container">
+
+
+		<form class="form-signin" method="post" action="try_card_add.php">
+			<h2 align="center" class="form-signin-heading">Add a card</h2>
+			<label for="ID">ID:</label><input type="text" name="card_id" id="card_id" />
+			<label for="ID">Name:</label><input type="text" name="name" id="card_name"/>
+			<label for="ID">Department</label><input type="text" name="department" id="dept"/>
+			<label for="ID">Type:</label><input type="text" name="card_type" id="card_type"/>
+			<button class="btn btn-primary submit-btn" type="submit">Add card</button>
+		</form>
+	</div>
+
+	<div id="push"></div>
+	</div>
+
 	<div id="footer">
 		<div class="container" align="center">
 			<p class="muted credit">
@@ -122,8 +172,8 @@ include "layout_top.php";
 			</p>
 		</div>
 	</div>
-	
-	
+
+
 		<script src="http://code.jquery.com/jquery.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 	</body>
