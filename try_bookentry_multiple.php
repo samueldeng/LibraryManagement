@@ -96,7 +96,7 @@ include "checklogin.php";
 include "layout_top.php";
 ?>
 		<div id="inputField" class="container">
-			<form class="form-signin" enctype="multipart/form-data" action="multi_book_entry.php" method="POST">
+			<form class="form-signin" enctype="multipart/form-data" action="muti_book_entry_new.php" method="POST">
 				<h2 align="center" class="form-signin-heading">Multiple-book entry</h2>
 				<input type="hidden" name="MAX_FILE_SIZE" value="100000" />
 				Choose a file to upload: <input name="uploadedfile" type="file" /><br />
