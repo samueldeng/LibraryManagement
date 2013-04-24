@@ -96,18 +96,16 @@ margin: 20px 0;
 				<label for='password' >Password:</label>
 				<input class="input-large" type="password" placeholder="Please enter your password" name='password' id='password'>
 				
-				<label for='identity' >Identity:</label>
-				<select class="span2" type="identity" name='identity' id='identity'>
-					<option>Reader</option>
-					<option>Administrator</option>
-				</select>
 				
-				<label class="checkbox">
-					<input type="checkbox" value="remember-me">
-					Remember me
-				</label>
-				
-				<button class="btn btn-large btn-primary" type="submit">Sign in</button>
+				<div class="controls controls-row">			
+                                    <div>
+                                        <button class="btn btn-small btn-primary" type="submit">Sign for Admin</button>
+                                    </div>
+                                    
+                                    <div>
+                                        <a class="btn btn-small" href="./try_bookquery_reader.php">Sign for Reader </a>
+                                    </div>
+                                </div>
 			</form>
 		</div>
 		<div id="push"></div>

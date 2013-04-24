@@ -143,15 +143,14 @@ margin: 20px 0;
 
 include "./config_connect_database.php";
 include "./checklogin.php";
- 
+
 $card_id = $_POST['card_id'];
 $book_id = $_POST['book_id'];
 
 
 
-$query = "SELECT * FROM 'borrow_record'
-             WHERE card_id='$card_id' and book_id='$book_id' and 'date_in' is null";
-
+$query = "SELECT * FROM borrow_record
+             WHERE card_id='$card_id' and book_id='$book_id' and date_in is null";
 
 
 $borrow_record_query= mysql_query($query);
@@ -162,10 +161,10 @@ if($has_borrow_record){
 	 mysql_query("UPDATE borrow_record
                  SET date_in = CURDATE()
                  WHERE card_id='$card_id' and book_id='$book_id'");
-    	echo "<h1> return successfully </h1><br>";
+    	echo "<div class='alert alert-success'>Return Successfully</div>";
 
 } else {
-    echo "<h1>Ha,Ha,Ha.don't cheat me!!!!</h1><br>";
+    echo "<div class='alert alert-error'><p>Error</p></div>";
 }
 $result = $dbh->query("SELECT * from book
 			WHERE book_id in (SELECT book_id FROM borrow_record 
